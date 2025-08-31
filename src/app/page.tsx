@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from 'react';
-import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent } from '@/components/ui/sidebar';
+import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarInset } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Aperture, History, Combine, FileJson, Settings, Bot } from 'lucide-react';
-import { SidebarInset } from '@/components/ui/sidebar';
+import { Aperture, History, Combine, FileJson, Bot } from 'lucide-react';
 
 import type { GqlEnvironment, HistoryItem, Settings as AppSettings } from '@/types';
 import { useLocalStorage } from '@/hooks/use-local-storage';
@@ -199,7 +198,7 @@ export default function Home() {
               </Tabs>
             </SidebarContent>
           </Sidebar>
-          <SidebarInset>
+          <div className="flex-1">
             <MainPanel
               query={query}
               setQuery={setQuery}
@@ -212,7 +211,7 @@ export default function Home() {
               isAIExplanationLoading={isAIExplanationLoading}
               onExplainError={handleExplainError}
             />
-          </SidebarInset>
+          </div>
         </div>
       </div>
     </SidebarProvider>

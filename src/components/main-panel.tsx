@@ -41,7 +41,7 @@ export function MainPanel({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 h-full">
       <div className="flex flex-col gap-4 min-h-0">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between h-10">
             <h2 className="text-lg font-semibold">Operation</h2>
             <Button onClick={onRun} disabled={isLoading}>
             {isLoading ? (
@@ -54,7 +54,7 @@ export function MainPanel({
         </div>
         <div className="grid grid-rows-2 gap-4 flex-1 min-h-0">
           <Card className="flex flex-col">
-            <CardHeader className="py-4">
+            <CardHeader className="py-2">
               <CardTitle className="text-base">Query</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 p-0 pb-2 px-2">
@@ -67,7 +67,7 @@ export function MainPanel({
             </CardContent>
           </Card>
           <Card className="flex flex-col">
-            <CardHeader className="py-4">
+            <CardHeader className="py-2">
               <CardTitle className="text-base">Variables</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 p-0 pb-2 px-2">
@@ -82,19 +82,17 @@ export function MainPanel({
         </div>
       </div>
       <Card className="flex flex-col min-h-0">
-        <CardHeader className="py-4">
-            <div className="flex justify-between items-center">
-                <CardTitle className="text-base">Response</CardTitle>
-                {response?.errors && (
-                    <Button variant="outline" size="sm" onClick={onExplainError} disabled={isAIExplanationLoading}>
-                         {isAIExplanationLoading ? <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div> : <Sparkles className="mr-2 h-4 w-4" />}
-                        Explain with AI
-                    </Button>
-                )}
-            </div>
+        <CardHeader className="py-2 h-[48px] flex flex-row items-center justify-between">
+            <CardTitle className="text-base">Response</CardTitle>
+            {response?.errors && (
+                <Button variant="outline" size="sm" onClick={onExplainError} disabled={isAIExplanationLoading}>
+                     {isAIExplanationLoading ? <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div> : <Sparkles className="mr-2 h-4 w-4" />}
+                    Explain with AI
+                </Button>
+            )}
         </CardHeader>
         <CardContent className="flex-1 min-h-0 p-2">
-          <ScrollArea className="h-full rounded-md border">
+          <ScrollArea className="h-full rounded-md bg-secondary/20">
             {aiExplanation && (
               <Alert className="m-4 border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950">
                 <Sparkles className="h-4 w-4 text-blue-600 dark:text-blue-400" />
