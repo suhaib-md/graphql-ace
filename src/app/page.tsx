@@ -177,7 +177,7 @@ export default function Home() {
             <SettingsDialog settings={settings} setSettings={setSettings} />
           </div>
         </header>
-        <div className="flex flex-1 min-h-0">
+        <div className="flex flex-1 min-h-0 w-full">
           <Sidebar>
             <SidebarContent>
               <Tabs defaultValue="schema" className="flex flex-col h-full p-2">
