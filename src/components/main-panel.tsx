@@ -1,4 +1,5 @@
 import { Play, Sparkles } from 'lucide-react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -30,6 +31,13 @@ export function MainPanel({
   isAIExplanationLoading,
   onExplainError,
 }: MainPanelProps) {
+  const responseDisplay = React.useMemo(() => {
+    if (!response) {
+      return <span className='text-muted-foreground font-sans'>Click "Run" to send a request.</span>;
+    }
+    return JSON.stringify(response, null, 2);
+  }, [response]);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 h-full">
       <div className="flex flex-col gap-4 min-h-0">
@@ -100,7 +108,7 @@ export function MainPanel({
               </Alert>
             )}
             <pre className="text-sm font-code p-4">
-              {response ? JSON.stringify(response, null, 2) : <span className='text-muted-foreground font-sans'>Click "Run" to send a request.</span>}
+              {responseDisplay}
             </pre>
           </ScrollArea>
         </CardContent>
