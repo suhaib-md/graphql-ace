@@ -40,7 +40,7 @@ export function MainPanel({
 
   return (
     <div className="flex flex-col lg:flex-row gap-4 p-4 h-full flex-1">
-      <div className="flex flex-col gap-4 min-h-0 lg:w-1/2 flex-1">
+      <div className="flex flex-col gap-4 min-h-0 lg:w-5/12 flex-1">
         <div className="flex items-center justify-between h-10">
             <h2 className="text-lg font-semibold">Operation</h2>
             <Button onClick={onRun} disabled={isLoading}>
@@ -81,7 +81,7 @@ export function MainPanel({
           </Card>
         </div>
       </div>
-      <Card className="flex flex-col min-h-0 lg:w-1/2 flex-1">
+      <Card className="flex flex-col min-h-0 lg:w-7/12 flex-1">
         <CardHeader className="py-2 h-[48px] flex flex-row items-center justify-between">
             <CardTitle className="text-base">Response</CardTitle>
             {response?.errors && (

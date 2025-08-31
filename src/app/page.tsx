@@ -157,10 +157,11 @@ export default function Home() {
   
   return (
     <SidebarProvider>
-      <div className="flex flex-col h-screen bg-background text-foreground font-body">
-        <header className="flex items-center justify-between h-14 px-4 border-b shrink-0">
+      <div className="flex h-screen bg-background text-foreground font-body">
+        {/* Header */}
+        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between h-14 px-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="flex items-center gap-2">
-            <SidebarTrigger className="md:hidden" />
+            <SidebarTrigger className="lg:hidden" />
             <Aperture className="h-6 w-6" />
             <h1 className="text-xl font-semibold font-headline">GraphQL Ace</h1>
           </div>
@@ -176,29 +177,46 @@ export default function Home() {
             </Button>
             <SettingsDialog settings={settings} setSettings={setSettings} />
           </div>
-        </header>
-        <div className="flex flex-1 min-h-0 w-full">
-          <Sidebar>
-            <SidebarContent>
-              <Tabs defaultValue="schema" className="flex flex-col h-full p-2">
+        </div>
+
+        {/* Sidebar */}
+        <Sidebar className="pt-14 border-r bg-sidebar">
+          <SidebarContent className="p-0">
+            <Tabs defaultValue="schema" className="flex flex-col h-full">
+              <div className="p-4 border-b">
                 <TabsList className="w-full grid grid-cols-3">
-                  <TabsTrigger value="schema"><FileJson className="mr-2 h-4 w-4"/>Schema</TabsTrigger>
-                  <TabsTrigger value="history"><History className="mr-2 h-4 w-4"/>History</TabsTrigger>
-                  <TabsTrigger value="batch"><Bot className="mr-2 h-4 w-4"/>Batch</TabsTrigger>
+                  <TabsTrigger value="schema" className="text-xs">
+                    <FileJson className="mr-1 h-3 w-3"/>
+                    Schema
+                  </TabsTrigger>
+                  <TabsTrigger value="history" className="text-xs">
+                    <History className="mr-1 h-3 w-3"/>
+                    History
+                  </TabsTrigger>
+                  <TabsTrigger value="batch" className="text-xs">
+                    <Bot className="mr-1 h-3 w-3"/>
+                    Batch
+                  </TabsTrigger>
                 </TabsList>
-                <TabsContent value="schema" className="flex-1 overflow-auto mt-2">
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <TabsContent value="schema" className="h-full overflow-auto p-4 m-0">
                   <SchemaExplorer schema={schema} isLoading={isSchemaLoading} />
                 </TabsContent>
-                <TabsContent value="history" className="flex-1 overflow-auto mt-2">
+                <TabsContent value="history" className="h-full overflow-auto p-4 m-0">
                   <HistoryPanel history={history} onSelect={loadFromHistory} environments={environments} />
                 </TabsContent>
-                <TabsContent value="batch" className="flex-1 overflow-auto mt-2 h-full">
+                <TabsContent value="batch" className="h-full overflow-auto p-4 m-0">
                   <BatchPanel />
                 </TabsContent>
-              </Tabs>
-            </SidebarContent>
-          </Sidebar>
-          <SidebarInset className="flex-1 flex flex-col">
+              </div>
+            </Tabs>
+          </SidebarContent>
+        </Sidebar>
+
+        {/* Main Content Area */}
+        <SidebarInset className="flex-1 pt-14">
+          <div className="h-full w-full">
             <MainPanel
               query={query}
               setQuery={setQuery}
@@ -211,8 +229,8 @@ export default function Home() {
               isAIExplanationLoading={isAIExplanationLoading}
               onExplainError={handleExplainError}
             />
-          </SidebarInset>
-        </div>
+          </div>
+        </SidebarInset>
       </div>
     </SidebarProvider>
   );
