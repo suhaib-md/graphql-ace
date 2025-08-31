@@ -198,7 +198,7 @@ export default function Home() {
               </Tabs>
             </SidebarContent>
           </Sidebar>
-          <div className="flex-1">
+          <SidebarInset className="flex-1 flex flex-col">
             <MainPanel
               query={query}
               setQuery={setQuery}
@@ -211,7 +211,7 @@ export default function Home() {
               isAIExplanationLoading={isAIExplanationLoading}
               onExplainError={handleExplainError}
             />
-          </div>
+          </SidebarInset>
         </div>
       </div>
     </SidebarProvider>
